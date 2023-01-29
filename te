@@ -1,0 +1,15 @@
+# from torch.utils.data import Dataset
+import torch
+# help(Dataset)
+print(torch.__version__)
+# conda create -n pytorch_new python=3.8
+import os
+
+# # 安装pytorch
+# cmd = 'conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 -c pytorch'
+# # 我的
+# cmd ='pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113'
+
+# 看pip 里面的list
+cmd ='pip list'
+os.system(cmd)

@@ -1,0 +1,56 @@
+import torch
+from torch.utils.data import Dataset
+from PIL import Image
+import os
+
+# # read image by PIL.open
+# img_path ="C:\\Users\\jiang\\OneDrive\\컴퓨터\\hymenoptera_data\\train\\ants\\0013035.jpg"
+# img=Image.open(img_path)
+# img.show()
+
+# test
+# dir_path= "C:\\Users\\jiang\OneDrive\\컴퓨터\\hymenoptera_data\\train\\ants"
+# img_path_list = os.listdir(dir_path)
+# img_path_list[0]
+
+root_dir="C:\\Users\\jiang\OneDrive\\컴퓨터\\hymenoptera_data\\train"
+label_dir ="ants"
+path = os.path.join(root_dir,label_dir)
+
+
+class MyData(Dataset):
+    def __init__(self,root_dir,label_dir):
+        self.root_dir = root_dir
+        self.label_dir = label_dir
+        self.path = os.path.join(self.root_dir,self.label_dir)
+        self.img_path=os.listdir(self.path)
+    
+
+
+    def __getitem__(self, idx):
+        img_name = self.img_path[idx]
+        img_item_path=os.path.join(self.root_dir,self.label_dir,img_name)
+        img = Image.open(img_item_path)
+        label=self.label_dir
+        return img,label
+    
+    def __len__(self):
+        return len(self.img_path)
+
+ants_dataset = MyData(root_dir,label_dir)
+ants_label_dir="ants"
+bees_label_dir="bees"
+bees_dataset = MyData(root_dir,bees_label_dir)
+# check datalodar 
+# img,label_dir=ants_dataset[0]
+# img.show()
+# img,label=bees_dataset[0]
+# img.show()
+
+# check len
+# print(len(ants_dataset))
+# print(len(bees_dataset))
+# total_len = len(ants_dataset)+len(bees_dataset)
+# print(total_len)
+
+
